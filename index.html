@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoshimachi Suisei Tribute</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1a 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e94560;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff6b8b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(15, 15, 26, 0.9));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .hero:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e94560);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Card Layout */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+            border-color: rgba(233, 69, 96, 0.5);
+        }
+
+        .card h2 {
+            color: #e94560;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .achievement-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            background: rgba(233, 69, 96, 0.1);
+            border-color: #e94560;
+            transform: translateY(-3px);
+        }
+
+        .achievement-item h3 {
+            color: #e94560;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* Songs Section */
+        .songs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .song-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .song-card:hover {
+            background: rgba(233, 69, 96, 0.1);
+            transform: scale(1.02);
+            border-color: #e94560;
+        }
+
+        .song-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .song-info p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #e94560, #ff6b8b);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Listen to Artists Section */
+        .artists-section {
+            text-align: center;
+        }
+
+        .artists-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .artist-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #e94560;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .artist-btn:hover {
+            background: #e94560;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        /* YouTube Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #e94560;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #e94560;
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #e94560;
+            transform: scale(1.1);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Audio Player Bar */
+        .audio-player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e94560;
+            z-index: 1000;
+        }
+
+        .audio-player-bar.active {
+            display: flex;
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .now-playing span:first-child {
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .player-controls button {
+            background: #e94560;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .player-controls button:hover {
+            background: #ff6b8b;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .card h2 {
+                font-size: 1.5rem;
+            }
+            
+            .song-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .artists-grid {
+                gap: 1rem;
+            }
+            
+            .artist-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Hoshimachi Suisei Tribute</h1>
+            <p>The Comet That Lights Up the Sky ✨</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="card">
+            <h2>✨ About Suisei</h2>
+            <p>Hoshimachi Suisei (星街すいせい) is a Virtual YouTuber (VTuber) affiliated with Hololive Production. Known for her incredible singing talent and charismatic personality, Suisei has captivated audiences worldwide. She debuted independently in 2018 before joining Hololive, and has since become one of the most popular VTubers in the industry. Her dedication to music and entertainment has earned her a massive and devoted fanbase known as "Hoshiyomi" (星詠み).</p>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="card">
+            <h2>🏆 Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-item">
+                    <h3>🎤 Solo Concerts</h3>
+                    <p>Nippon Budokan & More</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>🎵 Hit Songs</h3>
+                    <p>Millions of Views</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>⭐ THE FIRST TAKE</h3>
+                    <p>Historic Performance</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>💫 Hoshiyomi</h3>
+                    <p>Global Fanbase</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listen to Artists Section -->
+        <div class="card artists-section">
+            <h2>🎧 Listen to Artists</h2>
+            <div class="artists-grid">
+                <a href="https://www.youtube.com/@HoshimachiSuisei" target="_blank" class="artist-btn">Hoshimachi Suisei</a>
+                <a href="https://www.youtube.com/@SakuraMiko" target="_blank" class="artist-btn">Sakura Miko</a>
+            </div>
+        </div>
+
+        <!-- Featured Songs Section -->
+        <div class="card">
+            <h2>🎵 Featured Songs</h2>
+            <div class="songs-list">
+                <div class="song-card">
+                    <div class="song-info">
+                        <h3>Ghost</h3>
+                        <p>Hoshimachi Suisei</p>
+                    </div>
+                    <button class="play-btn" onclick="openYouTube('Ghost', '8O_B9eufHT0')">▶ Play</button>
+                </div>
+                <div class="song-card">
+                    <div class="song-info">
+                        <h3>Stellar Stellar</h3>
+                        <p>Hoshimachi Suisei</p>
+                    </div>
+                    <button class="play-btn" onclick="openYouTube('Stellar Stellar', 'a51VH9BYizw')">▶ Play</button>
+                </div>
+                <div class="song-card">
+                    <div class="song-info">
+                        <h3>BIBBIDIBA</h3>
+                        <p>Hoshimachi Suisei</p>
+                    </div>
+                    <button class="play-btn" onclick="openYouTube('BIBBIDIBA', 'GQJLlfAolQI')">▶ Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Modal -->
+    <div id="youtubeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalSongTitle">Now Playing</h3>
+                <button class="close-modal" onclick="closeYouTube()">✕</button>
+            </div>
+            <div class="video-container">
+                <iframe id="youtubePlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player Bar -->
+    <div id="audioPlayerBar" class="audio-player-bar">
+        <div class="now-playing">
+            <span>🎵 Now Playing:</span>
+            <span id="currentSong">-</span>
+        </div>
+        <div class="player-controls">
+            <button onclick="closeYouTube()">⏹️ Stop</button>
+        </div>
+    </div>
+
+    <script>
+        let currentVideoId = null;
+        let currentSongTitle = null;
+
+        function openYouTube(songTitle, videoId) {
+            // If same video is playing, stop it
+            if (currentVideoId === videoId && document.getElementById('youtubeModal').classList.contains('active')) {
+                closeYouTube();
+                return;
+            }
+
+            // Update UI
+            currentSongTitle = songTitle;
+            currentVideoId = videoId;
+            
+            // Set up YouTube embed with autoplay
+            const youtubeUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            document.getElementById('youtubePlayer').src = youtubeUrl;
+            
+            // Show modal and audio bar
+            document.getElementById('youtubeModal').classList.add('active');
+            document.getElementById('audioPlayerBar').classList.add('active');
+            document.getElementById('currentSong').textContent = songTitle;
+            document.getElementById('modalSongTitle').textContent = songTitle;
+        }
+
+        function closeYouTube() {
+            // Stop video and clear iframe
+            document.getElementById('youtubePlayer').src = '';
+            document.getElementById('youtubeModal').classList.remove('active');
+            document.getElementById('audioPlayerBar').classList.remove('active');
+            document.getElementById('currentSong').textContent = '-';
+            currentVideoId = null;
+            currentSongTitle = null;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('youtubeModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeYouTube();
+            }
+        });
+
+        // Keyboard controls: ESC to close
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Escape') {
+                closeYouTube();
+            }
+        });
+    </script>
+</body>
+</html>
